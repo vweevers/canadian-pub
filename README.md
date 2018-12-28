@@ -1,6 +1,10 @@
 # canadian-pub
 
+[![npm](https://img.shields.io/npm/v/canadian-pub.svg)](https://www.npmjs.com/package/canadian-pub)
+![Node version](https://img.shields.io/node/v/canadian-pub.svg)
 [![build status](https://secure.travis-ci.org/vweevers/canadian-pub.png)](http://travis-ci.org/vweevers/canadian-pub)
+[![dependencies](https://david-dm.org/vweevers/canadian-pub.svg)](https://david-dm.org/vweevers/canadian-pub)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 Successor to [`irish-pub`](https://github.com/thlorenz/irish-pub). Feel like npm is drunk or maybe you are and want to verify what gets published via `npm publish`? **canadian-pub** has you covered.
 
