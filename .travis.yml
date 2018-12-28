@@ -5,3 +5,4 @@ node_js:
 os:
   - osx
   - linux
+  - windows
