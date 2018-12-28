@@ -2,7 +2,16 @@
 
 var test = require('tape')
 var path = require('path')
+var registry = require('./registry')
 var canadianPub = require('..')
+
+test('start mock registry server', function (t) {
+  t.plan(1)
+
+  registry(function (err) {
+    t.ifError(err)
+  })
+})
 
 test('foo with .gitignore and no .npmignore', function (t) {
   t.plan(4)
@@ -15,7 +24,7 @@ test('foo with .gitignore and no .npmignore', function (t) {
     .on('metadata', function (meta) {
       t.is(meta.name, 'foo')
       t.is(meta.version, '1.2.3')
-      t.is(typeof meta.user, 'string')
+      t.is(meta.user, 'test-user')
     })
     .on('data', function (d) {
       entries.push(d.toString())
