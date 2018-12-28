@@ -1,6 +1,6 @@
 {
   "name": "canadian-pub",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Feel like npm is drunk or maybe you are and want to verify what gets published via `npm publish`? canadian-pub has you covered.",
   "author": "Vincent Weevers",
   "license": "MIT",
