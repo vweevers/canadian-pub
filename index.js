@@ -39,7 +39,7 @@ function getMetadata(root, callback) {
 }
 
 function listFiles(root, out) {
-  exec('npm pack ' + root, function (err, stdout, stderr) {
+  exec('npm pack --ignore-scripts ' + root, function (err, stdout, stderr) {
     if (err) return out.emit('error', 'Failed to pack archive: ' + err);
 
     // npm logs created filename on stdout
