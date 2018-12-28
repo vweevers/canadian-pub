@@ -48,3 +48,23 @@ test('bar with prepublish script', function (t) {
       ], 'emits all files that would be published')
     })
 })
+
+test('@scope/bar with prepack script', function (t) {
+  t.plan(1)
+
+  var root = path.join(__dirname, 'scoped')
+  var entries = []
+
+  canadianPub(root)
+    .on('error', t.fail.bind(t))
+    .on('data', function (d) {
+      entries.push(d.toString())
+    })
+    .on('end', function () {
+      t.deepEqual(entries, [
+        'package.json\n',
+        'index.js\n',
+        'other.js\n'
+      ], 'emits all files that would be published')
+    })
+})

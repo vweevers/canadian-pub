@@ -1,0 +1,11 @@
+{
+  "name": "@scope/bar",
+  "version": "1.2.3",
+  "description": "This package is scoped and has a prepack script",
+  "main": "index.js",
+  "scripts": {
+    "prepack": "echo bar"
+  },
+  "author": "",
+  "license": "ISC"
+}
