@@ -7,14 +7,14 @@
   "main": "index.js",
   "bin": "./bin/canadian-pub.js",
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "node test"
   },
   "dependencies": {
     "readable-stream": "~3.1.1",
     "tar-stream": "~1.6.2"
   },
   "devDependencies": {
-    "tap": "~0.4.3"
+    "tape": "~4.9.1"
   },
   "repository": {
     "type": "git",
