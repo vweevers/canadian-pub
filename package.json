@@ -33,7 +33,7 @@
     "secret",
     "irish-pub"
   ],
-  "engine": {
+  "engines": {
     "node": ">=8"
   }
 }
