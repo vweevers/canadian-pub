@@ -7,16 +7,30 @@ var PassThrough = require('readable-stream').PassThrough
 var pipeline = require('readable-stream').pipeline
 var zlib = require('zlib')
 var tar = require('tar-stream')
+var blacklist = require('./blacklist')
 
-module.exports = function canadianPub (root) {
+module.exports = function canadianPub (root, options) {
   root = root || process.cwd()
+  options = options || {}
 
   var out = new PassThrough()
 
   getMetadata(root, function (err, meta) {
     if (err) return out.destroy(err)
+
     out.emit('metadata', meta)
-    listFiles(root, out)
+    listFiles(root, out, options, function (err, blacklisted) {
+      if (err) return out.destroy(err)
+
+      if (blacklisted.length > 0) {
+        return out.destroy(new Error(
+          blacklisted.length + ' blacklisted: \n\n' +
+          blacklisted.join('\n')
+        ))
+      }
+
+      out.end()
+    })
   })
 
   return out
@@ -43,27 +57,31 @@ function getMetadata (root, callback) {
   })
 }
 
-function listFiles (root, out) {
+function listFiles (root, out, options, cb) {
   exec('npm pack --ignore-scripts ' + root, function (err, stdout, stderr) {
-    if (err) return out.destroy(err)
+    if (err) return cb(err)
 
     // npm logs created filename on stdout
     var tarFile = path.join(process.cwd(), stdout.trim().split(/\n+/).pop())
+    var blacklisted = []
 
     pipeline(
       fs.createReadStream(tarFile),
       zlib.createGunzip(),
       tar.extract().on('entry', function (header, stream, next) {
-        out.write(header.name.replace(/^package\//, '') + '\n')
+        var name = header.name.replace(/^package\//, '')
+
+        if (blacklist(name)) blacklisted.push(name)
+        if (!options.silent) out.write(name + '\n')
+
         stream.resume()
         next()
       }),
       function (err) {
-        if (err) return out.destroy(err)
+        if (err) return cb(err)
 
         fs.unlink(tarFile, function (err) {
-          if (err) return out.destroy(err)
-          out.end()
+          cb(err, blacklisted)
         })
       }
     )

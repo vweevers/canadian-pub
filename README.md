@@ -22,23 +22,58 @@ README.md
 bin/canadian-pub.js
 ```
 
-Similar to `npm pack --dry-run` but simpler and printing files to stdout instead of stderr.
+Similar to `npm pack --dry-run` but less noisy and printing files to stdout instead of stderr. In addition `canadian-pub` protects you from [common mistakes](blacklist.js), printing errors to stderr and exiting with code `1`:
+
+```
+3 blacklisted:
+
+.travis.yml
+deps/snappy/snappy.sln
+.nyc_output/9daf5b463f958a9071a9efcc7fbac6d9
+```
+
+This makes it useful as an npm `prepublish(Only)` script. Add `--silent` or `-s` to skip printing files. E.g.:
+
+```json
+"scripts": {
+  "prepublishOnly": "canadian-pub -s"
+}
+```
 
 ## Install
 
 With [npm](https://npmjs.org) do:
 
 ```
-npm install -g canadian-pub
+npm install canadian-pub --save-dev
 ```
+
+Or globally:
+
+```
+npm install canadian-pub -g
+```
+
+## CLI
+
+```
+canadian-pub [root] [--silent/-s] [--verbose]
+```
+
+See description of `root` and options below.
 
 ## API
 
-### `canadianPub([root])`
+### `canadianPub([root][, options])`
 
-Invokes `npm pack` to determine what would be included during `npm publish`. The `root` argument should be the path to the package to publish and defaults to the current working directory.
+Invokes `npm pack --ignore-scripts` to determine what would be included during `npm publish`. The `root` argument should be the path to the package to publish and defaults to the current working directory.
 
 Returns a [readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) that yields file paths relative to `root`.
+
+## Options
+
+- `silent`: boolean. Skip printing files.
+- `verbose`: boolean (cli only). Print stack traces.
 
 ## License
 
