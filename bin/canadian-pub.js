@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 'use strict'
-var canadianPub = require('..')
 
-canadianPub(process.cwd())
+var path = require('path')
+var canadianPub = require('..')
+var root = path.resolve('.', process.argv[2] || '')
+
+canadianPub(root)
   .on('metadata', function (meta) {
     var details = meta.name + '@' + meta.version + ' as ' + meta.user
     console.log('npm will publish ' + details + ', including the following files eh:\n')
