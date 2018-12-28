@@ -7,17 +7,7 @@ var exec = require('child_process').exec
   , zlib = require('zlib')
   , tar = require('tar')
 
-var go = module.exports =
-
-/**
- * Invokes `npm pack` to determine what would be included during `npm publish`.
- *
- * @name irishPub
- * @function
- * @param {string} root path to package to publish, defaults to `cwd`
- * @return {ReadableStream} stream that emits all files with paths relative to `root` that will be packed via the `data` event
- */
-function irishPub(root) {
+module.exports = function canadianPub(root) {
   root = root || process.cwd();
 
   var out = new PassThrough();

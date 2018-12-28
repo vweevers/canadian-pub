@@ -1,11 +1,13 @@
-# irish-pub [![build status](https://secure.travis-ci.org/thlorenz/irish-pub.png)](http://travis-ci.org/thlorenz/irish-pub)
+# canadian-pub
 
-Feel like npm is drunk or maybe you are and want to verify what gets published via `npm publish`? **irish-pub** has you covered.
+[![build status](https://secure.travis-ci.org/vweevers/canadian-pub.png)](http://travis-ci.org/vweevers/canadian-pub)
+
+Successor to [`irish-pub`](https://github.com/thlorenz/irish-pub). Feel like npm is drunk or maybe you are and want to verify what gets published via `npm publish`? **canadian-pub** has you covered.
 
 ```sh
-➝ irish-pub
+➝ canadian-pub
 
-npm will publish irish-pub@1.0.0 as thlorenz, including the following files:
+npm will publish canadian-pub@1.0.0 as vweevers, including the following files eh:
 
 package.json
 .npmignore
@@ -13,7 +15,7 @@ README.md
 LICENSE
 index.js
 .travis.yml
-bin/irish-pub.js
+bin/canadian-pub.js
 test/index.js
 test/foo/package.json
 test/foo/.npmignore
@@ -24,80 +26,16 @@ test/foo/lib/work.js
 
 ## Installation
 
-    npm install -g irish-pub
+    npm install -g canadian-pub
 
 ## API
 
-<!-- START docme generated API please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN docme TO UPDATE -->
+### `canadianPub([root])`
 
-<div>
-<div class="jsdoc-githubify">
-<section>
-<article>
-<div class="container-overview">
-<dl class="details">
-</dl>
-</div>
-<dl>
-<dt>
-<h4 class="name" id="irishPub"><span class="type-signature"></span>irishPub<span class="signature">(root)</span><span class="type-signature"> &rarr; {ReadableStream}</span></h4>
-</dt>
-<dd>
-<div class="description">
-<p>Invokes <code>npm pack</code> to determine what would be included during <code>npm publish</code>.</p>
-</div>
-<h5>Parameters:</h5>
-<table class="params">
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th class="last">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="name"><code>root</code></td>
-<td class="type">
-<span class="param-type">string</span>
-</td>
-<td class="description last"><p>path to package to publish, defaults to <code>cwd</code></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="details">
-<dt class="tag-source">Source:</dt>
-<dd class="tag-source"><ul class="dummy">
-<li>
-<a href="https://github.com/thlorenz/irish-pub/blob/master/index.js">index.js</a>
-<span>, </span>
-<a href="https://github.com/thlorenz/irish-pub/blob/master/index.js#L12">lineno 12</a>
-</li>
-</ul></dd>
-</dl>
-<h5>Returns:</h5>
-<div class="param-desc">
-<p>stream that emits all files with paths relative to <code>root</code> that will be packed via the <code>data</code> event</p>
-</div>
-<dl>
-<dt>
-Type
-</dt>
-<dd>
-<span class="param-type">ReadableStream</span>
-</dd>
-</dl>
-</dd>
-</dl>
-</article>
-</section>
-</div>
+Invokes `npm pack` to determine what would be included during `npm publish`. The `root` argument should be the path to the package to publish and defaults to the current working directory.
 
-*generated with [docme](https://github.com/thlorenz/docme)*
-</div>
-<!-- END docme generated API please keep comment here to allow auto update -->
+Returns a [readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) that yields file paths relative to `root`.
 
 ## License
 
-MIT
+[MIT](LICENSE.md) © 2018-present Vincent Weevers. Adapted from `irish-pub`, copyright © 2014 Thorsten Lorenz.

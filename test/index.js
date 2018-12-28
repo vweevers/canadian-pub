@@ -2,7 +2,7 @@
 /*jshint asi: true */
 
 var test = require('tap').test
-  , irishPub = require('../')
+  , canadianPub = require('../')
 
 function inspect(obj, depth) {
   console.error(require('util').inspect(obj, false, depth || 5, true));
@@ -12,7 +12,7 @@ test('\nfoo with .gitignore and no .npmignore', function (t) {
   var root = __dirname + '/foo';
   var entries = []
   t.plan(4);
-  irishPub(root)
+  canadianPub(root)
     .on('error', t.fail.bind(t))
     .on('metadata', function(meta) {
       t.equal(meta.name, 'foo');
@@ -40,7 +40,7 @@ test('bar with prepublish script', function (t) {
   var root = __dirname + '/bar';
   var entries = []
   t.plan(1);
-  irishPub(root)
+  canadianPub(root)
     .on('error', t.fail.bind(t))
     .on('data', function (d) {
       entries.push(d.toString());

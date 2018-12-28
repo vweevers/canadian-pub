@@ -1,17 +1,17 @@
 {
-  "name": "irish-pub",
+  "name": "canadian-pub",
   "version": "0.2.0",
-  "description": "Feel like npm is drunk or maybe you are and want to verify what gets published via `npm publish`? irish-pub has you covered.",
+  "description": "Feel like npm is drunk or maybe you are and want to verify what gets published via `npm publish`? canadian-pub has you covered.",
   "main": "index.js",
-  "bin": "./bin/irish-pub.js",
+  "bin": "./bin/canadian-pub.js",
   "scripts": {
     "test": "tap test/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/thlorenz/irish-pub.git"
+    "url": "git://github.com/vweevers/canadian-pub.git"
   },
-  "homepage": "https://github.com/thlorenz/irish-pub",
+  "homepage": "https://github.com/vweevers/canadian-pub",
   "dependencies": {
     "readable-stream": "~1.0.27-1",
     "tar": "~0.1.19"
@@ -25,15 +25,8 @@
     "pack",
     "secret"
   ],
-  "author": {
-    "name": "Thorsten Lorenz",
-    "email": "thlorenz@gmx.de",
-    "url": "http://thlorenz.com"
-  },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/thlorenz/irish-pub/blob/master/LICENSE"
-  },
+  "author": "Vincent Weevers",
+  "license": "MIT",
   "engine": {
     "node": ">=0.8"
   }
