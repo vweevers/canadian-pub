@@ -10,19 +10,13 @@ Successor to [`irish-pub`](https://github.com/thlorenz/irish-pub). Feel like npm
 npm will publish canadian-pub@1.0.0 as vweevers, including the following files eh:
 
 package.json
-.npmignore
-README.md
-LICENSE
 index.js
-.travis.yml
+LICENSE.md
+README.md
 bin/canadian-pub.js
-test/index.js
-test/foo/package.json
-test/foo/.npmignore
-test/foo/index.js
-test/foo/example/first.js
-test/foo/lib/work.js
 ```
+
+Similar to `npm pack --dry-run` but simpler and printing files to stdout instead of stderr.
 
 ## Installation
 
