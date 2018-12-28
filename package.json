@@ -6,6 +6,10 @@
   "license": "MIT",
   "main": "index.js",
   "bin": "./bin/canadian-pub.js",
+  "files": [
+    "index.js",
+    "bin"
+  ],
   "scripts": {
     "test": "node test"
   },
