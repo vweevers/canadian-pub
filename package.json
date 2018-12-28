@@ -10,7 +10,7 @@
     "test": "tap test/*.js"
   },
   "dependencies": {
-    "readable-stream": "~1.0.27-1",
+    "readable-stream": "~3.1.1",
     "tar": "~0.1.19"
   },
   "devDependencies": {
