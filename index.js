@@ -5,7 +5,7 @@ var exec = require('child_process').exec
   , fs = require('fs')
   , PassThrough = require('readable-stream').PassThrough
   , zlib = require('zlib')
-  , tar = require('tar')
+  , tar = require('tar-stream')
 
 module.exports = function canadianPub(root) {
   root = root || process.cwd();
@@ -49,12 +49,14 @@ function listFiles(root, out) {
       .on('error', out.emit.bind(out, 'error'))
       .pipe(zlib.createGunzip())
       .on('error', out.emit.bind(out, 'error'))
-      .pipe(tar.Parse())
+      .pipe(tar.extract())
       .on('error', out.emit.bind(out, 'error'))
-      .on('entry', function (e) {
-        out.write(e.path.replace(/^package\//, '') + '\n');
+      .on('entry', function (header, stream, next) {
+        out.write(header.name.replace(/^package\//, '') + '\n');
+        stream.resume()
+        next()
       })
-      .on('end', function () {
+      .on('finish', function () {
         fs.unlink(tarFile, function (err) {
           if (err) return out.emit(err);
           out.emit('end')
