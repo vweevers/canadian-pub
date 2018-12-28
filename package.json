@@ -29,6 +29,6 @@
     "irish-pub"
   ],
   "engine": {
-    "node": ">=0.8"
+    "node": ">=6"
   }
 }

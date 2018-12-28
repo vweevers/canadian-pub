@@ -1,7 +1,8 @@
 language: node_js
 node_js:
-  - "0.8"
-  - "0.10"
-install:
-  - npm install -g npm
-  - npm install
+  - 6
+  - 8
+  - 10
+os:
+  - osx
+  - linux
